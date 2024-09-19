@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!❤</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #000428, #004e92); /* سما ليلية مع النجوم */
+            background: linear-gradient(-45deg,#00bfa5,#004e92,#00bfa5,#004e92);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #ffffff;
+            text-shadow: 2px 2px 4px #000000;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        body.loaded{
+            opacity: 1;
+        }
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            animation: moveUp 10s infinite ease-in-out;
+            bottom: -100px;
+        }
+        @keyframes moveUp { 
+            0% {transform: translateY(0);opacity: 1;}
+            100% {transform: translateY(-1000px);opacity: 0;}
+
+        }
+        .bubble:nth-chiled(1){ left: 10%; width: 40px; height: 40px; animation-duration:7s; }
+        .bubble:nth-chiled(2){ left: 30%; width: 60px; height: 60px; animation-duration: 10s; }
+        .bubble:nth-chiled(3){ left: 50%; width: 50px; height: 50px; animation-duration:12s; }
+        .star {
+            animation: movestar 10s infinite ease-in-out;
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.8);
+        }
+        .star:nth-child(1) { top: 10%; left: 20%; width: 2px; height: 2px; }
+        .star:nth-child(2) { top: 30%; left: 50%; width: 3px; height: 3px; }
+        .star:nth-child(3) { top: 50%; left: 70%; width: 1px; height: 1px; }
+        .star:nth-child(4) { top: 70%; left: 30%; width: 2px; height: 2px; }
+        .star:nth-child(5) { top: 20%; left: 80%; width: 3px; height: 3px; }
+        @keyframes backgroundShift
+        {
+            0% {background-position: 0% 0% 50%;} 100%
+            {background-position: 100% 50%;}
+        }
+
+        #message-container {
+            text-align: center;
+            font-size: 50px;
+            width: 90%;
+            max-width: 1200px;
+            position: relative;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+
+        #message-container h1 {
+            font-size: 70px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin-top: 0;
+        }
+
+        #message-container p {
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+            margin-top: 5px;
+            font-family: 'Calibri', sans-serif;
+            text-align: center;
+            white-space: pre-wrap;
+            overflow: hidden;
+            width: 100%;
+            max-width: 1100px;
+            max-height: 100px; /* حجم الحد الأقصى للارتفاع */
+            overflow-y: auto; /* تمكين التمرير العمودي */
+
+        }
+
+        #message-container p::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        #message-container p::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        #message-container p::-webkit-scrollbar-thumb {
+            background: #00bfa5;
+            border-radius: 6px;
+        }
+
+        #play-Verse-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            background-color: #00bfa5; /* لون أخضر متناسق مع الخلفية */
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 30px;
+            left: 20px;
+            z-index: 100;
+        }
+
+        #play-Verse-button:hover {
+            background-color: #00d5b7;
+            box-shadow: 0 0 15px rgba(0, 191, 165, 0.8);
+        }
+        button:active {
+    transform: scale(0.95); /* تصغير الزر قليلاً عند الضغط عليه */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        #profile-image {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 100;
+        }
+
+        #profile-image img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 3px solid #00bfa5;
+            margin-right: 10px;
+        }
+
+        #profile-image span {
+            font-size: 26px;
+            color: #fff;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        #signature-image {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        #signature-image img {
+            width: 150px; /* حجم الصورة الصغيرة */
+            height: auto;
+            border-radius: 0px;
+            box-shadow: 0 0px 0px rgba(0, 0, 0, 0);
+        }
+
+        /* قائمة الأغاني المنسدلة */
+        #Verse-menu {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.212);
+            backdrop-filter: blur(15px);
+            padding: 20px;
+            z-index: 100;
+        }
+
+        #Verse-menu select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #000000;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1768px) {
+            body {
+                align-items: center;
+                height: 70vh;
+                margin: 0;
+                color: #ffffff;
+                text-shadow: 2px 2px 4px #000000;
+                overflow: hidden;
+                padding: 0 10px;
+            }
+            #message-container {
+                font-size: 30px;
+                margin-top: 70px;
+                width: 70vw;
+                max-width: 250px;
+                height: auto; /* اجعل الارتفاع تلقائي */
+            }
+            #message-container h1 {
+                font-size: 20px;
+            }
+
+            #message-container p {
+                font-size: 18px;
+                max-width: 200px;
+                max-height: 150px; /* تحديد ارتفاع ثابت للرسالة */
+                overflow-y: auto; /* تمكين التمرير العمودي */
+                 
+            }
+            #message-container p::-webkit-scrollbar {
+                width: 5px;
+            }
+            #message-container p::-webkit-scrollbar-thumb {
+                background: #4caf50;
+                border-radius: 10px;
+            }
+            #play-Verse-button {
+                font-size: 14px;
+                position: fixed;
+                top: 25px;
+
+            }
+
+            #profile-image span {
+                font-size: 14px;
+            }
+
+            #profile-image img {
+                width: 40px;
+                height: 40px;
+            }
+
+            #signature-image img {
+                width: 70px;
+            }
+
+            #Verse-menu {
+                width: 200px;
+                padding: 10px;
+                z-index: 80;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>    
+
+<div class="bubble"></div>
+<div class="bubble"></div>
+<div class="bubble"></div>
+
+<div id="message-container">
+    <h1>❤ Happy Birthday ❤</h1>
+    <p id="message-text"></p>
+    <!-- صورة التوقيع بدلاً من النص -->
+    <div id="signature-image">
+        <img src="signature-image.png" alt="Signature Image">
+    </div>
+</div>
+
+<!-- زر تشغيل الموسيقى -->
+<button id="play-Verse-button" onclick="toggleVerse()">Play Verse</button>
+
+<!-- صورة بروفايل و الاسم -->
+<div id="profile-image">
+    <img src="profile-image.jpg" alt="profile-image">
+    <span>Aliaa Sharara</span>
+</div>
+
+<!-- قائمة الأغاني المنسدلة -->
+<div id="Verse-menu">
+    <select id="Verse-select" onchange="changeVerse()">
+        <option value="">Select a Verse</option>
+        <option value="Verse1.mp3">Al Baqarah</option>
+        <option value="Verse2.mp3">Ayet Al-Kursi</option>
+        <option value="Verse3.mp3">Ash Sharh</option>
+    </select>
+</div>
+
+<audio id="background-Verse" preload="auto"></audio>
+<audio id="typing-sound" src="typing-sound.mp3" preload="auto"></audio>
+<script>
+const text = `بحاول أجهز في كلام و امسحه بس قلت أسيبها لله و أكتب و علي الله 
+أحداث كتير حصلت في الحياة سواء كان في الماضي أو الحاضر أو المستقبل بس علطول معلق معايا حدث واحد بس …  الحكاية إبتدت من ٢٤ سنة إلا ساعتين ، كان يوم أربع في فصل الخريف سنة ٢٠٠٠ ربنا قرر أنك تنوري الحياة و تكوني بين أحضان ماما مريم ربنا يخليهالك يا رب هي و بابا و أخواتك و كل حد بيحبك يا رب و ربنا يحميكي و يطول في عمرك فكل سنة و أنتي بخير و طيبة و قلبك أبيض نقي و إلي الله أقرب ديما
+و في حاجة أنا لاحظتها وهو أنه علي مر ال ٢٤ عيد ميلاد إلي فاتوا كان بيحصل حدث مميز جدا من عند ربنا و هو إن عيد ميلادك بيوافق ليلة و يوم الجمعة 🖤 ، ربنا بيحبك لأن يوم ميلادك هيوافق صيام الخميس مع يوم مبارك و من أعظم أيام الله و فيه ساعة استجابة و ديما كنت بدعيلك أنتي و كل صحابنا فيه بإن ربنا يوفقنا و يكتبلنا الخير ديما
+حاولت أحسبلها وقت محدد بس الحدث المميز ده زي قدر ربنا محدش يقدر يعرفه ولا يقرره غيره هو سبحانه و تعالي فالأمر ده اتكرر تلت مرات و الرابعة النهاردة و بكدا يكون السنين هما
+٢٠٠٢ ، ٢٠١٣ ، ٢٠١٩ ، ٢٠٢٤ 
+ استغلي يومك المميز و قومي الليل علي الساعة ٢ كدا و ابتدي السنة الجديدة مع ربنا يقربك منه ديما و يبعد عنك كل شر
+ ...
+ كل شيء حصل و بيحصل و هيحصل بتخطيط من ربنا و النتيجة هو وحده عالم بيها و أنا آمنت و رضيت بيها من قبل ما تحصل الحمدلله 
+   كنت حابب كمان أشكرك جدا جدا لأنك بسبب خطة ربنا ساعدتي في تغيير إنسان في إنه يكون قريب من ربنا و أنه يكتشف نفسه و ينمي من قدراته و شخصيته لحد مبقي عبدلله و رامي الكون كله بما فيه مركز تاني ، إنسان كان مغيب و عايش يصلي و يدعي علشان أمنية واحدة بس ... بس المفاجأة كانت إنه إكتشف إن الأمنية كانت ربنا بيهيأ ليها انها تتحقق بس المشكلة كانت في الإنسان نفسه ، لأنه كان متعلق ببني آدم و حاطط ربه مركز تاني و ده غلط كبير جدا لأن ربنا غيور و عاوز العبد يكون مكتفي أولا بيه هو و بس ثم يجي بعد كدا اي حد ... فنصيحة مهمة انك تحبي و تعشقي و تتعلقي بربنا بس علشان بس انتي عاوزة تكوني جمب خالق الكون مش علشان غاية معينة و هديتي ليكي دعوات معينة ديما بدعيها ليكو قبل نفسي ( اصلا اوقات بنسي أن ادعي لنفسي بس ربك بيسخر الي يدعيلي ) و الدعوات هي : اللهم يا خالق السبع سماوات و السبع أراضي في أيامك الست قربنا إليك و لا تجعلنا بعيدين عنك أبدا ، اللهم كرهنا في معصيتك و حببنا في طاعتك ، اللهم ابعد عنا الشر و قرب لنا الخير ، اللهم ارزقنا الخير لكي نساعد الفقراء ثم نساعد أهلنا ، اللهم ارزقنا النجاح لكي نرسم ابتسامة علي وجوه أباؤنا ... تأملي في كل دعوة هتلاقيها في حب الله و لله ... أخيرا بعد حبك المطلق لربنا ادعي بلي تحبيه و نصيحة اوعي تستسلمي زي منا استسلمت في انك تقللي ثقتك و حبك في ربنا و افضلي ديما جمبه و ادعي ادعي كتير لحد ميرزقك بالخير ليكي و لو ما اجابش هيبعت رسالة لقلبك يقلك أنه كان شر ليكي فمحققتهوش و إن بعد العسر يسرا و يا رب يبعد عنك الشر و يقرب ليكي كل ما هو فيه خير ليكي ( اقرب دعوة لقلبي ) ...
+    ربنا يجعله عيد ميلاد سعيد عليكي يا رب 
+   😅 وأسف لو طولت
+❤❤❤`;
+    const messageElement = document.getElementById("message-text");
+    const audio = document.getElementById("background-Verse");
+    let index = 0;
+
+    function typeText() {
+        if (index < text.length) {
+            messageElement.textContent += text.charAt(index);
+            index++;
+            setTimeout(typeText, 100); // تأخير بين الحروف
+        }
+    }
+
+    function toggleVerse() {
+        if (audio.paused) {
+            audio.play();
+            document.getElementById("play-Verse-button").textContent = "Pause Verse";
+        } else {
+            audio.pause();
+            document.getElementById("play-Verse-button").textContent = "Play Verse";
+        }
+    }
+
+    function changeVerse() {
+        const select = document.getElementById("Verse-select");
+        const selectedVerse = select.value;
+        if (selectedVerse) {
+            audio.src = selectedVerse;
+            audio.play();
+            document.getElementById("play-Verse-button").textContent = "Pause Verse";
+        }
+    }
+    
+    window.onload = function() {
+        typeText(); // ابدأ كتابة النص عند تحميل الصفحة
+    };
+</script>
+
+</body>
+</html>
